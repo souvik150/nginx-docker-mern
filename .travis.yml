@@ -15,3 +15,10 @@ after_success:
   - docker build -t souvik150/multi-nginx ./nginx
   - docker build -t souvik150/multi-server ./server
   - docker build -t souvik150/multi-worker ./worker
+  # Login to the docker CLI
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+  # Take those images and push them to docker hub
+  - docker push souvik150/multi-client
+  - docker push souvik150/multi-nginx
+  - docker push souvik150/multi-server
+  - docker push souvik150/multi-worker
